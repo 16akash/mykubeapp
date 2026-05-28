@@ -1,0 +1,23 @@
+replicaCount: 2
+
+namespace: akash-ns
+
+image:
+  repository: 16akash/streetfood-app
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 5000
+
+containerPort: 5000
+
+config:
+  APP_NAME: streetfood
+  APP_PORT: "5000"
+
+secret:
+  DB_USER: admin
+  DB_PASSWORD: admin123

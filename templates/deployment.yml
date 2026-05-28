@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streetfood-deployment
+  namespace: {{ .Values.namespace }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: streetfood
+
+  template:
+    metadata:
+      labels:
+        app: streetfood
+
+    spec:
+      containers:
+        - name: streetfood-container
+
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+
+          envFrom:
+            - configMapRef:
+                name: streetfood-config
+
+            - secretRef:
+                name: streetfood-secret
