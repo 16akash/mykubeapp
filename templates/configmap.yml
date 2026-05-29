@@ -1,5 +1,7 @@
+
 apiVersion: v1
 kind: ConfigMap
+
 metadata:
   name: streetfood-config
   namespace: {{ .Values.namespace }}
@@ -7,3 +9,5 @@ metadata:
 data:
   APP_NAME: "{{ .Values.config.APP_NAME }}"
   APP_PORT: "{{ .Values.config.APP_PORT }}"
+  APP_MODE: "{{ .Values.config.APP_MODE }}"
+

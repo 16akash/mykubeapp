@@ -1,5 +1,7 @@
+
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: streetfood-deployment
   namespace: {{ .Values.namespace }}
@@ -33,3 +35,13 @@ spec:
 
             - secretRef:
                 name: streetfood-secret
+
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+
+      volumes:
+        - name: config-volume
+          configMap:
+            name: streetfood-config
+
